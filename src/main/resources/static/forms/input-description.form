@@ -1,0 +1,23 @@
+{
+  "components": [
+    {
+      "label": "Описание",
+      "type": "textfield",
+      "id": "Field_0l2lvqa",
+      "key": "description",
+      "validate": {
+        "required": true
+      },
+      "description": "Введите описание задачи"
+    }
+  ],
+  "type": "default",
+  "id": "Form_0d0ouqq",
+  "executionPlatform": "Camunda Cloud",
+  "executionPlatformVersion": "8.1.0",
+  "exporter": {
+    "name": "Camunda Modeler",
+    "version": "5.8.0"
+  },
+  "schemaVersion": 7
+}

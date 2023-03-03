@@ -1,0 +1,23 @@
+{
+  "components": [
+    {
+      "label": "Вложение",
+      "type": "textfield",
+      "id": "Field_0swhyr2",
+      "key": "attachment",
+      "validate": {
+        "required": true
+      },
+      "description": "Добавьте вложение"
+    }
+  ],
+  "type": "default",
+  "id": "Form_0g9ykaj",
+  "executionPlatform": "Camunda Cloud",
+  "executionPlatformVersion": "8.1.0",
+  "exporter": {
+    "name": "Camunda Modeler",
+    "version": "5.8.0"
+  },
+  "schemaVersion": 7
+}
