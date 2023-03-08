@@ -3,21 +3,21 @@
     {
       "label": "Описание",
       "type": "textfield",
-      "id": "Field_0l2lvqa",
+      "id": "Field_07jsoqd",
       "key": "description",
+      "description": "Введите описание задачи",
       "validate": {
         "required": true
-      },
-      "description": "Введите описание задачи"
+      }
     }
   ],
   "type": "default",
-  "id": "Form_0d0ouqq",
-  "executionPlatform": "Camunda Cloud",
-  "executionPlatformVersion": "8.1.0",
+  "id": "input-description",
   "exporter": {
     "name": "Camunda Modeler",
     "version": "5.8.0"
   },
+  "executionPlatform": "Camunda Platform",
+  "executionPlatformVersion": "7.18.0",
   "schemaVersion": 7
 }

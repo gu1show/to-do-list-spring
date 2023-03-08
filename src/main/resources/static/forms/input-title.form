@@ -3,21 +3,21 @@
     {
       "label": "Заголовок",
       "type": "textfield",
-      "id": "Field_0cqha8a",
+      "id": "Field_0afgn0s",
       "key": "title",
+      "description": "Введите заголовок задачи",
       "validate": {
         "required": true
-      },
-      "description": "Введите заголовок задачи"
+      }
     }
   ],
   "type": "default",
-  "id": "Form_1xs8te1",
-  "executionPlatform": "Camunda Cloud",
-  "executionPlatformVersion": "8.1.0",
+  "id": "input-title",
   "exporter": {
     "name": "Camunda Modeler",
     "version": "5.8.0"
   },
+  "executionPlatform": "Camunda Platform",
+  "executionPlatformVersion": "7.18.0",
   "schemaVersion": 7
 }

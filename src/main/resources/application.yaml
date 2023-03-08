@@ -3,3 +3,6 @@ camunda:
     admin-user:
       id: admin
       password: admin
+    deployment-resource-pattern:
+      - classpath*:**/*.bpmn
+      - classpath*:**/*.form
