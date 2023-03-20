@@ -4,7 +4,7 @@
       "label": "Заголовок",
       "type": "textfield",
       "id": "Field_0afgn0s",
-      "key": "title",
+      "key": "taskTitle",
       "description": "Введите заголовок задачи",
       "validate": {
         "required": true
