@@ -6,3 +6,4 @@ camunda:
     deployment-resource-pattern:
       - classpath*:**/*.bpmn
       - classpath*:**/*.form
+spring.mvc.pathmatch.matching-strategy: ant_path_matcher
