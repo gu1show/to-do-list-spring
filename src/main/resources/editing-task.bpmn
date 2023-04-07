@@ -28,23 +28,23 @@
     </bpmn:endEvent>
     <bpmn:sequenceFlow id="Flow_0bl22jj" sourceRef="Event_0rl4bin" targetRef="Activity_1r1h2gm" />
     <bpmn:sequenceFlow id="Flow_1dbk91r" name="Прикрепляем вложения" sourceRef="Gateway_1bjyhm6" targetRef="Activity_1q736ok">
-      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${choise=='choiseChangeAttachment'}</bpmn:conditionExpression>
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${choice=='choiceChangeAttachment'}</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
     <bpmn:sequenceFlow id="Flow_010z1va" sourceRef="Activity_1q736ok" targetRef="Gateway_07pkibg" />
     <bpmn:sequenceFlow id="Flow_1ws0gl7" name="Изменяем описание" sourceRef="Gateway_1bjyhm6" targetRef="Activity_08vnss6">
-      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${choise=='choiseChangeDescription'}</bpmn:conditionExpression>
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${choice=='choiceChangeDescription'}</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
     <bpmn:sequenceFlow id="Flow_1r9i4vm" sourceRef="Activity_08vnss6" targetRef="Gateway_07pkibg" />
     <bpmn:sequenceFlow id="Flow_169lxc4" sourceRef="Activity_1r1h2gm" targetRef="Gateway_1bjyhm6" />
     <bpmn:sequenceFlow id="Flow_0vk4a8w" name="Отменяем процесс создания задачи" sourceRef="Gateway_1bjyhm6" targetRef="Event_1ww9yjl">
-      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${choise=='choiseCancelCreatingTask'}</bpmn:conditionExpression>
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${choice=='choiceCancelCreatingTask'}</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
     <bpmn:sequenceFlow id="Flow_0hs9rfo" name="Некорректный ввод" sourceRef="Gateway_1bjyhm6" targetRef="Activity_18k3oxh" />
     <bpmn:sequenceFlow id="Flow_0xfk6m3" name="Добавляем задачу в Redmine" sourceRef="Gateway_1bjyhm6" targetRef="Gateway_07pkibg">
-      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${choise=='choiseAddTaskToRedmine'}</bpmn:conditionExpression>
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${choice=='choiceAddTaskToRedmine'}</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
     <bpmn:sequenceFlow id="Flow_1vvt65e" name="Изменяем заголовок" sourceRef="Gateway_1bjyhm6" targetRef="Activity_11osla1">
-      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${choise=='choiseChangeTitle'}</bpmn:conditionExpression>
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${choice=='choiceChangeTitle'}</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
     <bpmn:sequenceFlow id="Flow_1liq95i" sourceRef="Activity_11osla1" targetRef="Gateway_07pkibg" />
     <bpmn:sequenceFlow id="Flow_1smc6h3" sourceRef="Gateway_07pkibg" targetRef="Event_0thohip" />

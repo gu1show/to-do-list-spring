@@ -13,8 +13,8 @@ import javax.inject.Named;
 @Slf4j
 public class AllTaskInformationSender implements JavaDelegate {
     @Override
-    public void execute(DelegateExecution execution) throws Exception {
-        log.info(String.format("Title: %s, description: %s, attachment: %s.",
+    public void execute(DelegateExecution execution) {
+        log.info(String.format("Параметры задачи:\nЗаголовок: %s, описание: %s, вложения: %s.",
                 execution.getVariable("taskTitle"),
                 execution.getVariable("description"),
                 execution.getVariable("attachment")));

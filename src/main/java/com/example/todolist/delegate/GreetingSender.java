@@ -13,7 +13,7 @@ import javax.inject.Named;
 @Slf4j
 public class GreetingSender implements JavaDelegate {
     @Override
-    public void execute(DelegateExecution execution) throws Exception {
-        log.info("Send greeting.");
+    public void execute(DelegateExecution execution) {
+        log.info("Приветствие послано.");
     }
 }

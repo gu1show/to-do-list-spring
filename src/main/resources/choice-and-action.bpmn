@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:modeler="http://camunda.org/schema/modeler/1.0" id="Definitions_1032iv5" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="5.8.0" modeler:executionPlatform="Camunda Platform" modeler:executionPlatformVersion="7.18.0">
   <bpmn:process id="choose-and-act" isExecutable="true">
-    <bpmn:startEvent id="StartEvent_1">
+    <bpmn:startEvent id="StartEvent_1" name="Начало выбора действия">
       <bpmn:outgoing>Flow_0wp08ua</bpmn:outgoing>
     </bpmn:startEvent>
     <bpmn:exclusiveGateway id="Gateway_0g78w2a" name="Что делаем дальше?" default="Flow_012zjxs">
@@ -17,14 +17,14 @@
       <bpmn:incoming>Flow_0v62og6</bpmn:incoming>
     </bpmn:endEvent>
     <bpmn:sequenceFlow id="Flow_01e7b4t" name="Прикрепляем вложения" sourceRef="Gateway_0g78w2a" targetRef="Activity_007jnka">
-      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${choise=='choiseAddAttachment'}</bpmn:conditionExpression>
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${choice=='choiceAddAttachment'}</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
     <bpmn:sequenceFlow id="Flow_1nhde1r" name="Добавляем описание" sourceRef="Gateway_0g78w2a" targetRef="Activity_1uy04m5">
-      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${choise=='choiseInputDescription'}</bpmn:conditionExpression>
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${choice=='choiceInputDescription'}</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
     <bpmn:sequenceFlow id="Flow_17y21ea" sourceRef="Activity_1apsxzm" targetRef="Gateway_0g78w2a" />
     <bpmn:sequenceFlow id="Flow_0v62og6" name="Отменяем процесс создания задачи" sourceRef="Gateway_0g78w2a" targetRef="Event_0n8bub7">
-      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${choise=='choiseCancelCreatingTask'}</bpmn:conditionExpression>
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${choice=='choiceCancelCreatingTask'}</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
     <bpmn:sequenceFlow id="Flow_0wp08ua" sourceRef="StartEvent_1" targetRef="Activity_1apsxzm" />
     <bpmn:exclusiveGateway id="Gateway_1mngtzs">
@@ -36,16 +36,16 @@
     </bpmn:exclusiveGateway>
     <bpmn:sequenceFlow id="Flow_0raq211" sourceRef="Activity_1uy04m5" targetRef="Gateway_1mngtzs" />
     <bpmn:sequenceFlow id="Flow_0l2a80r" sourceRef="Activity_007jnka" targetRef="Gateway_1mngtzs" />
-    <bpmn:endEvent id="Event_1nmadl1">
+    <bpmn:endEvent id="Event_1nmadl1" name="Конец выбора действия">
       <bpmn:incoming>Flow_0bbt3ze</bpmn:incoming>
     </bpmn:endEvent>
     <bpmn:sequenceFlow id="Flow_0bbt3ze" sourceRef="Gateway_1mngtzs" targetRef="Event_1nmadl1" />
     <bpmn:sequenceFlow id="Flow_012zjxs" name="Некорректный ввод" sourceRef="Gateway_0g78w2a" targetRef="Activity_1cg1k8b" />
     <bpmn:sequenceFlow id="Flow_0bjzhl4" name="Смотрим составленную задачу" sourceRef="Gateway_0g78w2a" targetRef="Gateway_1mngtzs">
-      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${choise=='choiseLookAtTask'}</bpmn:conditionExpression>
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${choice=='choiceLookAtTask'}</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
     <bpmn:sequenceFlow id="Flow_0vsptbx" name="Изменяем заголовок" sourceRef="Gateway_0g78w2a" targetRef="Activity_0yqt2l4">
-      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${choise=='choiseChangeTitle'}</bpmn:conditionExpression>
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${choice=='choiceChangeTitle'}</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
     <bpmn:sequenceFlow id="Flow_15k5ugw" sourceRef="Activity_0yqt2l4" targetRef="Gateway_1mngtzs" />
     <bpmn:receiveTask id="Activity_1apsxzm" name="Выбор дальнейших действий" messageRef="Message_3h6d7ie">
@@ -71,14 +71,17 @@
       <bpmn:outgoing>Flow_15k5ugw</bpmn:outgoing>
     </bpmn:receiveTask>
   </bpmn:process>
-  <bpmn:message id="Message_3h6d7ie" name="MessageChooseActionAdding" />
+  <bpmn:message id="Message_3h6d7ie" name="MessageChooseAction" />
   <bpmn:message id="Message_283j1gd" name="MessageInputDescription" />
   <bpmn:message id="Message_1gcoehi" name="MessageAddAttachment" />
-  <bpmn:message id="Message_3qkvp8d" name="MessageChangeTitleDuringAddingInformationToTask" />
+  <bpmn:message id="Message_3qkvp8d" name="MessageChangeTitle" />
   <bpmndi:BPMNDiagram id="BPMNDiagram_1">
     <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="choose-and-act">
       <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="StartEvent_1">
         <dc:Bounds x="179" y="332" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="159" y="375" width="80" height="27" />
+        </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="BPMNShape_0ysapwe" bpmnElement="Gateway_0g78w2a" isMarkerVisible="true">
         <dc:Bounds x="455" y="325" width="50" height="50" />
@@ -97,6 +100,9 @@
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Event_1nmadl1_di" bpmnElement="Event_1nmadl1">
         <dc:Bounds x="982" y="332" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="965" y="375" width="73" height="27" />
+        </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Activity_0bwxq92_di" bpmnElement="Activity_1apsxzm">
         <dc:Bounds x="300" y="310" width="100" height="80" />
@@ -164,7 +170,7 @@
         <di:waypoint x="480" y="680" />
         <di:waypoint x="610" y="680" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="510" y="646" width="74" height="27" />
+          <dc:Bounds x="520" y="646" width="74" height="27" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_0bjzhl4_di" bpmnElement="Flow_0bjzhl4">
@@ -189,10 +195,10 @@
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_1fiupjf_di" bpmnElement="Flow_1fiupjf">
         <di:waypoint x="710" y="680" />
-        <di:waypoint x="770" y="680" />
-        <di:waypoint x="770" y="760" />
-        <di:waypoint x="340" y="760" />
-        <di:waypoint x="350" y="390" />
+        <di:waypoint x="820" y="680" />
+        <di:waypoint x="820" y="760" />
+        <di:waypoint x="351" y="760" />
+        <di:waypoint x="351" y="390" />
       </bpmndi:BPMNEdge>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>

@@ -7,13 +7,13 @@ import org.camunda.bpm.engine.delegate.JavaDelegate;
 import javax.inject.Named;
 
 /**
- * Класс, чтобы сообщать о некорректном вводе.
+ * Класс, чтобы послать вопрос о создании задачи пользователю.
  */
 @Named
 @Slf4j
-public class IncorrectInputSender implements JavaDelegate {
+public class CreateTaskOrNotSender implements JavaDelegate {
     @Override
     public void execute(DelegateExecution execution) {
-        log.info("Некорректный ввод.");
+        log.info("Создать задачу?");
     }
 }
