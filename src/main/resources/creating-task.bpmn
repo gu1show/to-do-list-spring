@@ -31,27 +31,12 @@
     <bpmn:sequenceFlow id="Flow_0qvz3bc" sourceRef="Activity_0xyseqv" targetRef="ActivityInputTitle" />
     <bpmn:sequenceFlow id="Flow_0u8hwt0" sourceRef="StartEvent" targetRef="Activity_0xyseqv" />
     <bpmn:sequenceFlow id="Flow_1gtkqbd" sourceRef="Activity_1fuda3l" targetRef="EventAddTaskToRedmine" />
-    <bpmn:callActivity id="Activity_1lrlcg2" name="Выбор дальнейшего действия" calledElement="choose-and-act">
-      <bpmn:extensionElements>
-        <camunda:in businessKey="#{execution.processBusinessKey}" />
-        <camunda:in source="title" target="title" />
-        <camunda:in source="description" target="description" />
-        <camunda:in source="attachment" target="attachment" />
-        <camunda:out source="title" target="title" />
-        <camunda:out source="description" target="description" />
-        <camunda:out source="attachment" target="attachment" />
-        <camunda:out source="choice" target="choice" />
-      </bpmn:extensionElements>
-      <bpmn:incoming>Flow_0dc11wz</bpmn:incoming>
-      <bpmn:outgoing>Flow_0qp47vc</bpmn:outgoing>
-    </bpmn:callActivity>
     <bpmn:exclusiveGateway id="Gateway_0716i3t" name="Что делаем дальше?" default="Flow_07eremw">
       <bpmn:incoming>Flow_0qp47vc</bpmn:incoming>
       <bpmn:outgoing>Flow_07eremw</bpmn:outgoing>
       <bpmn:outgoing>Flow_02gmrtk</bpmn:outgoing>
       <bpmn:outgoing>Flow_1i5jt0i</bpmn:outgoing>
     </bpmn:exclusiveGateway>
-    <bpmn:sequenceFlow id="Flow_0qp47vc" sourceRef="Activity_1lrlcg2" targetRef="Gateway_0716i3t" />
     <bpmn:sequenceFlow id="Flow_07eremw" sourceRef="Gateway_0716i3t" targetRef="Gateway_0qozffv" />
     <bpmn:exclusiveGateway id="Gateway_0qozffv">
       <bpmn:incoming>Flow_1euhltf</bpmn:incoming>
@@ -102,6 +87,21 @@
       <bpmn:incoming>Flow_182ysoy</bpmn:incoming>
       <bpmn:outgoing>Flow_191xqtp</bpmn:outgoing>
     </bpmn:sendTask>
+    <bpmn:callActivity id="Activity_1lrlcg2" name="Выбор дальнейшего действия" calledElement="choose-and-act">
+      <bpmn:extensionElements>
+        <camunda:in businessKey="#{execution.processBusinessKey}" />
+        <camunda:in source="title" target="title" />
+        <camunda:in source="description" target="description" />
+        <camunda:in source="attachment" target="attachment" />
+        <camunda:out source="title" target="title" />
+        <camunda:out source="description" target="description" />
+        <camunda:out source="attachment" target="attachment" />
+        <camunda:out source="choice" target="choice" />
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_0dc11wz</bpmn:incoming>
+      <bpmn:outgoing>Flow_0qp47vc</bpmn:outgoing>
+    </bpmn:callActivity>
+    <bpmn:sequenceFlow id="Flow_0qp47vc" sourceRef="Activity_1lrlcg2" targetRef="Gateway_0716i3t" />
   </bpmn:process>
   <bpmn:message id="Message_1kfa2cm" name="MessageChangeTitle" />
   <bpmn:message id="Message_3fpfpc1" name="MessageCreateTaskOrNot" />

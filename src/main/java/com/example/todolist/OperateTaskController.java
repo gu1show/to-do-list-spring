@@ -2,6 +2,8 @@ package com.example.todolist;
 
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Map;
+
 /**
  * Контроллер, который отправляет в CamundaService действие из запроса.
  */
@@ -22,63 +24,66 @@ public class OperateTaskController {
 
     /**
      * Принимает запрос на запуск процесса создания задачи в Camunda.
-     * @param telegramUserId ID пользователя Telegram, который является business key для процесса.
+     * @param request поля и значения, которые пришли в запросе.
      */
-    @PostMapping("create-task/{telegramUserId}")
-    public void startProcessTaskCreating(@PathVariable final String telegramUserId) {
-        camundaStartService.startProcessTaskCreating(telegramUserId);
+    @PostMapping("create-task")
+    public void startProcessTaskCreating(@RequestBody final Map<String, Object> request) {
+        long telegramUserId = ((Number) request.get("business key")).longValue();
+        camundaStartService.startProcessTaskCreating(Long.toString(telegramUserId));
     }
 
     /**
      * Принимает запрос на установление заголовка задачи.
-     * @param telegramUserId ID пользователя Telegram, который является business key для процесса.
-     * @param taskTitle заголовок задачи.
+     * @param request поля и значения, которые пришли в запросе.
      */
-    @PostMapping("task/{telegramUserId}/change-title/{taskTitle}")
-    public void setTaskTitle(@PathVariable final String telegramUserId, @PathVariable final String taskTitle) {
-        camundaStartService.setTaskTitle(telegramUserId, taskTitle);
+    @PostMapping("change-title")
+    public void setTaskTitle(@RequestBody final Map<String, Object> request) {
+        long telegramUserId = ((Number) request.get("business key")).longValue();
+        String taskTitle = (String) request.get("title");
+        camundaStartService.setTaskTitle(Long.toString(telegramUserId), taskTitle);
     }
 
     /**
      * Принимает запрос на переход к действию, которое нужно будет выполнить.
-     * @param telegramUserId ID пользователя Telegram, который является business key для процесса.
-     * @param action действие, которое нужно делать далее.
+     * @param request поля и значения, которые пришли в запросе.
      */
-    @PostMapping("task/{telegramUserId}/choose-action/{action}")
-    public void setNextAction(@PathVariable final String telegramUserId, @PathVariable final String action) {
-        camundaStartService.setNextAction(telegramUserId, action);
+    @PostMapping("choose-action")
+    public void setNextAction(@RequestBody final Map<String, Object> request) {
+        long telegramUserId = ((Number) request.get("business key")).longValue();
+        String action = (String) request.get("choice");
+        camundaStartService.setNextAction(Long.toString(telegramUserId), action);
     }
 
     /**
      * Принимает запрос на установление описания задачи.
-     * @param telegramUserId ID пользователя Telegram, который является business key для процесса.
-     * @param taskDescription описание задачи.
+     * @param request поля и значения, которые пришли в запросе.
      */
-    @PostMapping("task/{telegramUserId}/change-description/{taskDescription}")
-    public void setTaskDescription(@PathVariable final String telegramUserId,
-                                   @PathVariable final String taskDescription) {
-        camundaStartService.setTaskDescription(telegramUserId, taskDescription);
+    @PostMapping("change-description")
+    public void setTaskDescription(@RequestBody final Map<String, Object> request) {
+        long telegramUserId = ((Number) request.get("business key")).longValue();
+        String taskDescription = (String) request.get("description");
+        camundaStartService.setTaskDescription(Long.toString(telegramUserId), taskDescription);
     }
 
     /**
      * Принимает запрос на установление вложений задачи.
-     * @param telegramUserId ID пользователя Telegram, который является business key для процесса.
-     * @param taskAttachment вложение задачи.
+     * @param request поля и значения, которые пришли в запросе.
      */
-    @PostMapping("task/{telegramUserId}/change-attachment/{taskAttachment}")
-    public void setTaskAttachment(@PathVariable final String telegramUserId,
-                                  @PathVariable final String taskAttachment) {
-        camundaStartService.setTaskAttachment(telegramUserId, taskAttachment);
+    @PostMapping("change-attachment")
+    public void setTaskAttachment(@RequestBody final Map<String, Object> request) {
+        long telegramUserId = ((Number) request.get("business key")).longValue();
+        String taskAttachment = (String) request.get("attachment");
+        camundaStartService.setTaskAttachment(Long.toString(telegramUserId), taskAttachment);
     }
 
     /**
      * Принимает запрос на создание задачи или продолжение работы над ней.
-     * @param telegramUserId ID пользователя Telegram, который является business key для процесса.
-     * @param answer выбор, создавать ли задачу или нет.
+     * @param request поля и значения, которые пришли в запросе.
      */
-    @PostMapping("task/{telegramUserId}/create-task-or-not/{answer}")
-    public void defineCreateTaskOrNot(@PathVariable final String telegramUserId,
-                                      @PathVariable final String answer) {
-        camundaStartService.defineCreateTaskOrNot(telegramUserId, answer);
+    @PostMapping("create-task-or-not")
+    public void defineCreateTaskOrNot(@RequestBody final Map<String, Object> request) {
+        long telegramUserId = ((Number) request.get("business key")).longValue();
+        String answer = (String) request.get("choice");
+        camundaStartService.defineCreateTaskOrNot(Long.toString(telegramUserId), answer);
     }
 }

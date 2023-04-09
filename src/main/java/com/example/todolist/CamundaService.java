@@ -34,7 +34,8 @@ public class CamundaService {
      * @param telegramUserId ID пользователя Telegram, который является business key для процесса.
      */
     public void startProcessTaskCreating(final String telegramUserId) {
-        if (processInstanceQuery.processInstanceBusinessKey(telegramUserId).count() == 0) {
+        if (processInstanceQuery.processInstanceBusinessKey(telegramUserId)
+                                .processDefinitionKey("creating-task").count() == 0) {
             runtimeService.startProcessInstanceByKey("creating-task", telegramUserId);
         }
     }
@@ -45,7 +46,8 @@ public class CamundaService {
      * @param taskTitle заголовок задачи.
      */
     public void setTaskTitle(final String telegramUserId, final String taskTitle) {
-        if (processInstanceQuery.processInstanceBusinessKey(telegramUserId).count() < 3) {
+        if (processInstanceQuery.processInstanceBusinessKey(telegramUserId)
+                                .processDefinitionKey("creating-task").count() == 1) {
             runtimeService.createMessageCorrelation("MessageChangeTitle")
                     .processInstanceBusinessKey(telegramUserId)
                     .setVariable("title", taskTitle)
@@ -69,7 +71,8 @@ public class CamundaService {
      * @param action инструкция, что делать далее.
      */
     public void setNextAction(final String telegramUserId, final String action) {
-        if (processInstanceQuery.processInstanceBusinessKey(telegramUserId).count() == 2) {
+        if (processInstanceQuery.processInstanceBusinessKey(telegramUserId)
+                                .processDefinitionKey("creating-task").count() == 1) {
             log.info(String.format("Вы выбрали %s.", action));
 
             runtimeService.createMessageCorrelation("MessageChooseAction")
@@ -85,7 +88,8 @@ public class CamundaService {
      * @param taskDescription описание задачи.
      */
     public void setTaskDescription(final String telegramUserId, final String taskDescription) {
-        if (processInstanceQuery.processInstanceBusinessKey(telegramUserId).count() == 2) {
+        if (processInstanceQuery.processInstanceBusinessKey(telegramUserId)
+                                .processDefinitionKey("creating-task").count() == 1) {
             runtimeService.createMessageCorrelation("MessageInputDescription")
                     .processInstanceBusinessKey(telegramUserId)
                     .setVariable("description", taskDescription)
@@ -101,7 +105,8 @@ public class CamundaService {
      * @param taskAttachment вложение задачи.
      */
     public void setTaskAttachment(final String telegramUserId, final String taskAttachment) {
-        if (processInstanceQuery.processInstanceBusinessKey(telegramUserId).count() == 2) {
+        if (processInstanceQuery.processInstanceBusinessKey(telegramUserId)
+                                .processDefinitionKey("creating-task").count() == 1) {
             runtimeService.createMessageCorrelation("MessageAddAttachment")
                     .processInstanceBusinessKey(telegramUserId)
                     .setVariable("attachment", taskAttachment)
@@ -117,7 +122,8 @@ public class CamundaService {
      * @param choice выбор, создавать ли задачу или нет.
      */
     public void defineCreateTaskOrNot(final String telegramUserId, final String choice) {
-        if (processInstanceQuery.processInstanceBusinessKey(telegramUserId).count() == 1) {
+        if (processInstanceQuery.processInstanceBusinessKey(telegramUserId)
+                                .processDefinitionKey("creating-task").count() == 1) {
             log.info(String.format("Вы выбрали %s.", choice));
 
             runtimeService.createMessageCorrelation("MessageCreateTaskOrNot")
