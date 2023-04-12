@@ -15,7 +15,7 @@ public class AllTaskInformationSender implements JavaDelegate {
     @Override
     public void execute(DelegateExecution execution) {
         log.info(String.format("Параметры задачи:\nЗаголовок: %s, описание: %s, вложения: %s.",
-                execution.getVariable("taskTitle"),
+                execution.getVariable("title"),
                 execution.getVariable("description"),
                 execution.getVariable("attachment")));
     }

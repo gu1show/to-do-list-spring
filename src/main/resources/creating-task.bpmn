@@ -87,6 +87,7 @@
       <bpmn:incoming>Flow_182ysoy</bpmn:incoming>
       <bpmn:outgoing>Flow_191xqtp</bpmn:outgoing>
     </bpmn:sendTask>
+    <bpmn:sequenceFlow id="Flow_0qp47vc" sourceRef="Activity_1lrlcg2" targetRef="Gateway_0716i3t" />
     <bpmn:callActivity id="Activity_1lrlcg2" name="Выбор дальнейшего действия" calledElement="choose-and-act">
       <bpmn:extensionElements>
         <camunda:in businessKey="#{execution.processBusinessKey}" />
@@ -101,7 +102,6 @@
       <bpmn:incoming>Flow_0dc11wz</bpmn:incoming>
       <bpmn:outgoing>Flow_0qp47vc</bpmn:outgoing>
     </bpmn:callActivity>
-    <bpmn:sequenceFlow id="Flow_0qp47vc" sourceRef="Activity_1lrlcg2" targetRef="Gateway_0716i3t" />
   </bpmn:process>
   <bpmn:message id="Message_1kfa2cm" name="MessageChangeTitle" />
   <bpmn:message id="Message_3fpfpc1" name="MessageCreateTaskOrNot" />
@@ -155,10 +155,6 @@
           <dc:Bounds x="157" y="355" width="86" height="27" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_1lrlcg2_di" bpmnElement="Activity_1lrlcg2">
-        <dc:Bounds x="610" y="290" width="100" height="80" />
-        <bpmndi:BPMNLabel />
-      </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Gateway_0716i3t_di" bpmnElement="Gateway_0716i3t" isMarkerVisible="true">
         <dc:Bounds x="765" y="305" width="50" height="50" />
         <bpmndi:BPMNLabel>
@@ -194,6 +190,10 @@
         <dc:Bounds x="1070" y="290" width="100" height="80" />
         <bpmndi:BPMNLabel />
       </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1lrlcg2_di" bpmnElement="Activity_1lrlcg2">
+        <dc:Bounds x="610" y="290" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="Flow_1euhltf_di" bpmnElement="Flow_1euhltf">
         <di:waypoint x="480" y="330" />
         <di:waypoint x="525" y="330" />
@@ -209,10 +209,6 @@
       <bpmndi:BPMNEdge id="Flow_1gtkqbd_di" bpmnElement="Flow_1gtkqbd">
         <di:waypoint x="1600" y="330" />
         <di:waypoint x="1642" y="330" />
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="Flow_0qp47vc_di" bpmnElement="Flow_0qp47vc">
-        <di:waypoint x="710" y="330" />
-        <di:waypoint x="765" y="330" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_07eremw_di" bpmnElement="Flow_07eremw">
         <di:waypoint x="790" y="355" />
@@ -265,6 +261,10 @@
       <bpmndi:BPMNEdge id="Flow_191xqtp_di" bpmnElement="Flow_191xqtp">
         <di:waypoint x="1170" y="330" />
         <di:waypoint x="1210" y="330" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0qp47vc_di" bpmnElement="Flow_0qp47vc">
+        <di:waypoint x="710" y="330" />
+        <di:waypoint x="765" y="330" />
       </bpmndi:BPMNEdge>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>
